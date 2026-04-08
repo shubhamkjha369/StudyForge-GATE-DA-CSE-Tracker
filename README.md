@@ -46,7 +46,7 @@ It was built specifically around the **GATE DA 2027** (Data Science & Artificial
 
 ## Quick Start
 
-1. Download `StudyForge_Tracker_V3.html`
+1. Download `StudyForge_Tracker_V3.html` or `index.html` (renamed, to be deployed)
 2. Open it in any modern browser (Chrome, Firefox, Edge — no extensions needed)
 3. That's it. Your data auto-saves to `localStorage` as you work
 

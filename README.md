@@ -52,7 +52,7 @@ Since StudyForge is a self-contained application, there's no installation requir
     ```bash
     git clone https://github.com/your-username/studyforge-gate-da.git
     ```
-2.  Open `StudyForge_Tracker_V2.html` in any modern web browser (Edge, Chrome, or Firefox).
+2.  Open `StudyForge_Tracker_V3.html` in any modern web browser (Edge, Chrome, or Firefox).
 3.  **Optional**: Pin the tab or add it to your bookmarks for quick access.
 
 ## 💾 Data Management

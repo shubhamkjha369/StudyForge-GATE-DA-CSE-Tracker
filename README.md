@@ -411,14 +411,14 @@ Zero npm packages. Zero build steps. Zero dependencies to install. One file.
 ---
 
 ## Screenshots
+<img width="1810" height="1054" alt="Screenshot 2026-04-09 051600" src="https://github.com/user-attachments/assets/7665a70a-a492-45cb-ab6e-c7a7d8c7fd33" />
+<img width="1810" height="1058" alt="Screenshot 2026-04-09 051626" src="https://github.com/user-attachments/assets/986e9334-157f-4ff5-b6ec-a543db99c8b2" />
+<img width="1806" height="1058" alt="Screenshot 2026-04-09 051640" src="https://github.com/user-attachments/assets/dd51a1da-678d-4fa7-b2b4-55de5cfa76cf" />
+<img width="1808" height="1061" alt="Screenshot 2026-04-09 051713" src="https://github.com/user-attachments/assets/3ad4a8a4-573e-4821-b9fa-5adf4f69d446" />
+<img width="1812" height="1055" alt="Screenshot 2026-04-09 051729" src="https://github.com/user-attachments/assets/aa3dd172-d285-4317-8b0f-6990ff497ef2" />
+<img width="761" height="893" alt="Screenshot 2026-04-09 051743" src="https://github.com/user-attachments/assets/7a6fe01c-740e-40ec-9233-580ef1c6b34c" />
 
-> *Add screenshots here after upload. Suggested captures:*
-> - Dashboard with countdown widget
-> - GATE DA Unit Tracker with subtopics expanded
-> - Pomodoro timer running in focus mode
-> - PYQ Tracker in edit mode
-> - Analytics heatmap
-> - Settings page with exam date editor
+
 
 ---
 

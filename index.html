@@ -35,6 +35,11 @@
   --da-teal: #2a9d8f;
   --da-teal-light: rgba(42,157,143,0.12);
   --da-teal-border: rgba(42,157,143,0.28);
+  --cs-blue: #3b6fd4;
+  --cs-blue-light: rgba(59,111,212,0.12);
+  --cs-blue-border: rgba(59,111,212,0.28);
+  --cs-green: #2e8b57;
+  --cs-green-light: rgba(46,139,87,0.12);
   --da-purple: #7c6fcd;
   --da-purple-light: rgba(124,111,205,0.12);
   --da-amber: #e9b949;
@@ -1138,7 +1143,10 @@ body {
     </div>
     <div class="nav-section-label">Study</div>
     <div class="nav-item" data-page="gate-da">
-      <span class="nav-icon">◉</span> GATE DA 2027 Tracker
+      <span class="nav-icon">◉</span> GATE DA 2027
+    </div>
+    <div class="nav-item" data-page="gate-cs">
+      <span class="nav-icon">💻</span> GATE CS 2027
     </div>
     <div class="nav-item" data-page="pomodoro">
       <span class="nav-icon">◷</span> Pomodoro Timer
@@ -1464,6 +1472,96 @@ body {
       </div>
     </div>
 
+    <!-- ===== GATE CS PAGE ===== -->
+    <div class="page" id="page-gate-cs">
+      <div class="page-header">
+        <h1>GATE CS 2027</h1>
+        <p>Computer Science & Information Technology · Full syllabus tracker</p>
+      </div>
+
+      <!-- Hero -->
+      <div class="da-hero" style="background:linear-gradient(135deg,#eef2ff 0%,#e0e8ff 50%,#f0fff4 100%);">
+        <div style="display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:12px;">
+          <div>
+            <h2>GATE Computer Science — 2027</h2>
+            <p>10 sections covering the full official GATE CS syllabus.<br>Track topics, subtopics, confidence levels, pins, and revision — fully in sync with your dashboard.</p>
+          </div>
+          <div class="da-exam-badge" style="background:var(--cs-blue);">💻 Exam: Feb 2027</div>
+        </div>
+        <div class="da-hero-meta">
+          <div class="da-meta-chip">📅 Start: <strong>Apr 2026</strong></div>
+          <div class="da-meta-chip">📘 Sections: <strong>10</strong></div>
+          <div class="da-meta-chip">📝 Topics: <strong id="cs-total-topics-chip">0</strong></div>
+          <div class="da-meta-chip">✅ Done: <strong id="cs-done-topics-chip">0</strong></div>
+          <div class="da-meta-chip">📊 Progress: <strong id="cs-overall-pct-chip">0%</strong></div>
+        </div>
+        <div style="margin-top:14px;" class="progress-bar-wrap pb-h8">
+          <div class="progress-bar-fill" id="cs-overall-bar" style="width:0%;background:var(--cs-blue)"></div>
+        </div>
+      </div>
+
+      <!-- Stats row -->
+      <div class="da-stats-row">
+        <div class="da-stat-card"><div class="da-stat-val" style="color:var(--cs-blue)" id="cs-stat-done">0</div><div class="da-stat-lbl">Topics Done</div></div>
+        <div class="da-stat-card"><div class="da-stat-val" style="color:var(--cs-blue)" id="cs-stat-subtopics">0</div><div class="da-stat-lbl">Subtopics Done</div></div>
+        <div class="da-stat-card"><div class="da-stat-val" style="color:var(--cs-blue)" id="cs-stat-pomos">0</div><div class="da-stat-lbl">CS Pomodoros</div></div>
+        <div class="da-stat-card"><div class="da-stat-val" style="color:var(--cs-blue)" id="cs-stat-days">—</div><div class="da-stat-lbl">Days Left</div></div>
+      </div>
+
+      <!-- Tabs -->
+      <div style="display:flex;gap:8px;margin-bottom:20px;">
+        <button class="timer-mode-btn active" id="cs-tab-tracker" onclick="switchCsTab('tracker')">📊 Section Tracker</button>
+        <button class="timer-mode-btn" id="cs-tab-tips" onclick="switchCsTab('tips')">💡 Strategy & Tips</button>
+      </div>
+
+      <!-- TRACKER TAB -->
+      <div id="cs-view-tracker">
+        <div class="da-roadmap-grid">
+          <div class="da-sidebar-nav" id="cs-unit-nav"></div>
+          <div class="da-unit-content" id="cs-unit-content"></div>
+        </div>
+      </div>
+
+      <!-- TIPS TAB -->
+      <div id="cs-view-tips" style="display:none;">
+        <div class="grid-2">
+          <div class="card">
+            <div class="section-title">📚 Key Resources</div>
+            <div style="font-size:13px;color:var(--text-secondary);line-height:1.9;">
+              <div>📖 <strong>Discrete Math:</strong> Kenneth Rosen — Discrete Math & Applications</div>
+              <div>📖 <strong>Algorithms:</strong> CLRS (Cormen), GeeksForGeeks, MIT OCW 6.006</div>
+              <div>📖 <strong>OS:</strong> Galvin — OS Concepts; NPTEL OS (IIT Bombay)</div>
+              <div>📖 <strong>DBMS:</strong> Korth — Database System Concepts; Gate Smashers</div>
+              <div>📖 <strong>CN:</strong> Forouzan — Data Communications; Tanenbaum</div>
+              <div>📖 <strong>TOC:</strong> Ullman — Introduction to Automata Theory</div>
+              <div>📖 <strong>COA:</strong> Patterson & Hennessy; Hamacher</div>
+              <div style="margin-top:12px;">🎥 <strong>YouTube:</strong> Gate Smashers, Abdul Bari (Algorithms), Neso Academy (COA/TOC/CN)</div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="section-title">🎯 Exam Strategy</div>
+            <div style="font-size:13px;color:var(--text-secondary);line-height:1.9;">
+              <div>⚡ <strong>High-weight:</strong> Algorithms (10%), OS (9%), DBMS (9%), CN (9%)</div>
+              <div>⚡ <strong>Easy marks:</strong> Engineering Math — never skip this section</div>
+              <div>⚡ <strong>TOC/Compiler:</strong> Conceptually hard but very predictable PYQ patterns</div>
+              <div>⚡ <strong>Digital Logic:</strong> Fast marks if you practice K-maps and number systems</div>
+              <div>⚡ <strong>PYQs:</strong> GATE Overflow is the gold standard — solve topic-wise</div>
+              <div style="margin-top:12px;">📊 <strong>Section weightage (approx):</strong></div>
+              <div style="font-size:12px;margin-top:6px;display:flex;flex-wrap:wrap;gap:6px;">
+                <span class="da-tag" style="background:var(--cs-blue-light);color:var(--cs-blue);">Algorithms 10%</span>
+                <span class="da-tag" style="background:var(--cs-blue-light);color:var(--cs-blue);">OS 9%</span>
+                <span class="da-tag" style="background:var(--cs-blue-light);color:var(--cs-blue);">DBMS 9%</span>
+                <span class="da-tag" style="background:var(--cs-blue-light);color:var(--cs-blue);">CN 9%</span>
+                <span class="da-tag" style="background:var(--cs-green-light);color:var(--cs-green);">Eng Math 13%</span>
+                <span class="da-tag" style="background:var(--cs-green-light);color:var(--cs-green);">TOC 7%</span>
+                <span class="da-tag" style="background:var(--cs-green-light);color:var(--cs-green);">COA 7%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- ===== POMODORO PAGE ===== -->
     <div class="page" id="page-pomodoro">
       <div class="page-header">
@@ -1726,11 +1824,16 @@ body {
     <div class="page" id="page-notes">
       <div class="page-header">
         <h1>Study Notes</h1>
-        <p>Capture key concepts, formulas, and insights per unit</p>
+        <p>Capture key concepts, formulas, and insights — organised by exam and unit</p>
       </div>
       <div class="scratchpad-wrap">
         <div class="card-title">✍️ Quick Scratchpad</div>
         <textarea id="scratchpad" placeholder="Quick thoughts, formulas, or reminders... (auto-saved)" oninput="saveScratchpad()"></textarea>
+      </div>
+      <!-- Exam switcher for notes -->
+      <div style="display:flex;gap:8px;margin-bottom:16px;">
+        <button class="timer-mode-btn active" id="notes-tab-da" onclick="switchNotesExam('da')">◉ GATE DA</button>
+        <button class="timer-mode-btn" id="notes-tab-cs" onclick="switchNotesExam('cs')">💻 GATE CS</button>
       </div>
       <div class="notes-layout">
         <div class="notes-sidebar" id="notes-unit-nav"></div>
@@ -2081,6 +2184,130 @@ const DA_TIMELINE = [
   { month: 'Oct 2026 – Jan 2027', title: 'Phase 7 — Mastery & Revision', desc: 'Focusing on research papers, complex projects, and multiple rounds of full syllabus revision.', tags: ['Revision', 'Projects', 'Papers', 'Mocks'], tagTypes: ['', 'purple', 'amber', 'coral'], dot: false }
 ];
 
+// ===== GATE CS DATA =====
+const GATE_CS = {
+  units: [
+    {
+      id: 'cs_u1', name: 'Engineering Mathematics', abbr: 'Eng Math',
+      desc: 'Discrete Math, Linear Algebra, Calculus, Probability & Statistics.',
+      color: 'var(--cs-blue)', months: 'Apr–May 2026',
+      topics: [
+        { id: 'cs_u1_t1', name: 'Discrete Mathematics', subtopics: ['Propositional Logic','First Order Logic','Sets','Relations','Functions','Partial Orders','Lattices','Monoids','Groups','Graph Connectivity','Graph Matching','Graph Colouring','Counting','Recurrence Relations','Generating Functions'] },
+        { id: 'cs_u1_t2', name: 'Linear Algebra', subtopics: ['Matrices','Determinants','System of Linear Equations','Eigenvalues','Eigenvectors','LU Decomposition'] },
+        { id: 'cs_u1_t3', name: 'Calculus', subtopics: ['Limits','Continuity','Differentiability','Maxima and Minima','Mean Value Theorem','Integration'] },
+        { id: 'cs_u1_t4', name: 'Probability & Statistics', subtopics: ['Random Variables','Uniform Distribution','Normal Distribution','Exponential Distribution','Poisson Distribution','Binomial Distribution','Mean, Median, Mode, Standard Deviation','Conditional Probability','Bayes Theorem'] }
+      ]
+    },
+    {
+      id: 'cs_u2', name: 'Digital Logic', abbr: 'Digital Logic',
+      desc: 'Boolean algebra, circuits, minimization and number systems.',
+      color: 'var(--cs-green)', months: 'May 2026',
+      topics: [
+        { id: 'cs_u2_t1', name: 'Boolean Algebra', subtopics: ['Boolean Laws','De Morgan\'s Theorem','Canonical Forms','SOP and POS'] },
+        { id: 'cs_u2_t2', name: 'Circuits', subtopics: ['Combinational Circuits','Sequential Circuits','Multiplexers','Demultiplexers','Encoders','Decoders','Flip-Flops','Registers','Counters'] },
+        { id: 'cs_u2_t3', name: 'Minimization', subtopics: ['K-Map Minimization','Quine-McCluskey Method'] },
+        { id: 'cs_u2_t4', name: 'Number Systems', subtopics: ['Fixed Point Representation','Floating Point Representation','Computer Arithmetic','Signed Numbers','2\'s Complement'] }
+      ]
+    },
+    {
+      id: 'cs_u3', name: 'Computer Organization & Architecture', abbr: 'COA',
+      desc: 'Machine instructions, pipelining, memory hierarchy, and I/O.',
+      color: 'var(--da-amber)', months: 'Jun 2026',
+      topics: [
+        { id: 'cs_u3_t1', name: 'Machine Instructions', subtopics: ['Instruction Formats','Addressing Modes','Assembly Language Basics'] },
+        { id: 'cs_u3_t2', name: 'Processor Design', subtopics: ['ALU Design','Data-Path','Control Unit','Hardwired Control','Microprogrammed Control'] },
+        { id: 'cs_u3_t3', name: 'Instruction Pipelining', subtopics: ['Pipeline Stages','Pipeline Hazards','Data Hazards','Control Hazards','Structural Hazards','Hazard Resolution'] },
+        { id: 'cs_u3_t4', name: 'Memory Hierarchy', subtopics: ['Cache Memory','Cache Mapping (Direct, Associative, Set-Associative)','Cache Replacement Policies','Main Memory','Secondary Storage','Virtual Memory','Paging','Segmentation'] },
+        { id: 'cs_u3_t5', name: 'I/O Interface', subtopics: ['Interrupt Driven I/O','DMA Mode','I/O Channels'] }
+      ]
+    },
+    {
+      id: 'cs_u4', name: 'Programming & Data Structures', abbr: 'Prog & DS',
+      desc: 'Programming in C, recursion, and all major data structures.',
+      color: 'var(--da-coral)', months: 'Apr–May 2026',
+      topics: [
+        { id: 'cs_u4_t1', name: 'Programming in C', subtopics: ['Data Types','Operators','Control Flow','Functions','Pointers','Arrays','Strings','Structures','File I/O'] },
+        { id: 'cs_u4_t2', name: 'Recursion', subtopics: ['Recursive Functions','Stack Frames','Tail Recursion','Mutual Recursion'] },
+        { id: 'cs_u4_t3', name: 'Linear Data Structures', subtopics: ['Arrays','Stacks','Queues','Linked Lists (Singly, Doubly, Circular)'] },
+        { id: 'cs_u4_t4', name: 'Trees', subtopics: ['Binary Trees','Binary Search Trees','AVL Trees','Red-Black Trees','Binary Heaps','B-Trees','B+ Trees'] },
+        { id: 'cs_u4_t5', name: 'Graphs', subtopics: ['Graph Representations','BFS','DFS','Topological Sort','Strongly Connected Components'] }
+      ]
+    },
+    {
+      id: 'cs_u5', name: 'Algorithms', abbr: 'Algorithms',
+      desc: 'Searching, sorting, complexity, design techniques and graph algorithms.',
+      color: 'var(--cs-blue)', months: 'Jun–Jul 2026',
+      topics: [
+        { id: 'cs_u5_t1', name: 'Searching & Sorting', subtopics: ['Linear Search','Binary Search','Bubble Sort','Selection Sort','Insertion Sort','Merge Sort','Quick Sort','Heap Sort','Counting Sort','Radix Sort'] },
+        { id: 'cs_u5_t2', name: 'Hashing', subtopics: ['Hash Functions','Collision Resolution','Chaining','Open Addressing'] },
+        { id: 'cs_u5_t3', name: 'Complexity Analysis', subtopics: ['Asymptotic Notation (Big-O, Omega, Theta)','Best/Worst/Average Case','Time Complexity','Space Complexity','Master Theorem'] },
+        { id: 'cs_u5_t4', name: 'Algorithm Design Techniques', subtopics: ['Greedy Algorithms','Dynamic Programming','Divide and Conquer','Backtracking'] },
+        { id: 'cs_u5_t5', name: 'Graph Algorithms', subtopics: ['Graph Traversals (BFS/DFS)','Minimum Spanning Trees (Kruskal, Prim)','Shortest Paths (Dijkstra, Bellman-Ford, Floyd-Warshall)'] }
+      ]
+    },
+    {
+      id: 'cs_u6', name: 'Theory of Computation', abbr: 'TOC',
+      desc: 'Automata, formal languages, and computability.',
+      color: 'var(--da-purple)', months: 'Jul 2026',
+      topics: [
+        { id: 'cs_u6_t1', name: 'Regular Languages', subtopics: ['Regular Expressions','Finite Automata (DFA)','NFA to DFA Conversion','Minimization of DFA','Pumping Lemma for Regular Languages'] },
+        { id: 'cs_u6_t2', name: 'Context-Free Languages', subtopics: ['Context-Free Grammars','Pushdown Automata','Chomsky Normal Form','Pumping Lemma for CFLs','CYK Algorithm'] },
+        { id: 'cs_u6_t3', name: 'Turing Machines', subtopics: ['Turing Machine Model','Variants of TM','Decidability','Undecidability','Halting Problem','Rice\'s Theorem'] }
+      ]
+    },
+    {
+      id: 'cs_u7', name: 'Compiler Design', abbr: 'Compiler',
+      desc: 'Lexical analysis, parsing, code generation and optimization.',
+      color: 'var(--cs-green)', months: 'Aug 2026',
+      topics: [
+        { id: 'cs_u7_t1', name: 'Lexical Analysis', subtopics: ['Tokens','Lexemes','Patterns','Regular Expressions for Tokens','LEX Tool'] },
+        { id: 'cs_u7_t2', name: 'Parsing', subtopics: ['Context-Free Grammars for Syntax','Top-Down Parsing','LL(1) Parser','Bottom-Up Parsing','LR(0)','SLR(1)','LALR(1)','YACC Tool'] },
+        { id: 'cs_u7_t3', name: 'Syntax-Directed Translation', subtopics: ['SDT Schemes','Inherited Attributes','Synthesized Attributes','Annotated Parse Tree'] },
+        { id: 'cs_u7_t4', name: 'Runtime & Code Generation', subtopics: ['Runtime Environments','Activation Records','Intermediate Code Generation','Three-Address Code','Quadruples','Triples'] },
+        { id: 'cs_u7_t5', name: 'Optimization', subtopics: ['Local Optimization','Data Flow Analysis','Constant Propagation','Liveness Analysis','Common Subexpression Elimination'] }
+      ]
+    },
+    {
+      id: 'cs_u8', name: 'Operating System', abbr: 'OS',
+      desc: 'Processes, scheduling, memory management, synchronization and file systems.',
+      color: 'var(--da-coral)', months: 'Aug–Sep 2026',
+      topics: [
+        { id: 'cs_u8_t1', name: 'Processes & Threads', subtopics: ['System Calls','Process States','Process Control Block','Threads','Multithreading Models','Inter-Process Communication'] },
+        { id: 'cs_u8_t2', name: 'Concurrency & Synchronization', subtopics: ['Race Conditions','Critical Section Problem','Mutex','Semaphores','Monitors','Classical Problems (Dining Philosophers, Producer-Consumer, Readers-Writers)'] },
+        { id: 'cs_u8_t3', name: 'Deadlock', subtopics: ['Deadlock Conditions','Resource Allocation Graph','Deadlock Prevention','Deadlock Avoidance (Banker\'s Algorithm)','Deadlock Detection & Recovery'] },
+        { id: 'cs_u8_t4', name: 'CPU Scheduling', subtopics: ['FCFS','SJF','SRTF','Round Robin','Priority Scheduling','Multilevel Queue','Scheduling Criteria'] },
+        { id: 'cs_u8_t5', name: 'Memory Management', subtopics: ['Contiguous Allocation','Paging','Segmentation','Page Replacement Algorithms (FIFO, LRU, Optimal)','Thrashing','Working Set Model'] },
+        { id: 'cs_u8_t6', name: 'File Systems', subtopics: ['File Concepts','Directory Structure','File Allocation Methods (Contiguous, Linked, Indexed)','Free Space Management','I/O Scheduling'] }
+      ]
+    },
+    {
+      id: 'cs_u9', name: 'Databases', abbr: 'DBMS',
+      desc: 'ER model, relational model, SQL, normalization and transactions.',
+      color: 'var(--cs-blue)', months: 'Sep 2026',
+      topics: [
+        { id: 'cs_u9_t1', name: 'ER Model', subtopics: ['Entities','Attributes','Relationships','ER Diagram Notation','Converting ER to Relational'] },
+        { id: 'cs_u9_t2', name: 'Relational Model', subtopics: ['Relational Algebra','Tuple Calculus','Domain Calculus','Keys (Primary, Foreign, Candidate, Super)'] },
+        { id: 'cs_u9_t3', name: 'SQL', subtopics: ['DDL Commands','DML Commands','Joins (Inner, Outer, Cross)','Subqueries','Aggregate Functions','GROUP BY','HAVING','Views','Triggers'] },
+        { id: 'cs_u9_t4', name: 'Integrity & Normal Forms', subtopics: ['Integrity Constraints','Functional Dependencies','1NF','2NF','3NF','BCNF','Lossless Decomposition','Dependency Preservation'] },
+        { id: 'cs_u9_t5', name: 'File Organization & Indexing', subtopics: ['Sequential Files','Indexed Files','B-Trees','B+ Trees','Hashing for Databases'] },
+        { id: 'cs_u9_t6', name: 'Transactions', subtopics: ['ACID Properties','Transaction States','Serializability','Conflict Serializability','View Serializability','Concurrency Control (2PL, Timestamp)','Recovery (Undo/Redo)'] }
+      ]
+    },
+    {
+      id: 'cs_u10', name: 'Computer Networks', abbr: 'CN',
+      desc: 'OSI/TCP-IP, data link, routing, IP, transport and application layers.',
+      color: 'var(--cs-green)', months: 'Oct 2026',
+      topics: [
+        { id: 'cs_u10_t1', name: 'Network Models', subtopics: ['OSI Model (7 Layers)','TCP/IP Model','Comparison of OSI and TCP/IP','Packet Switching','Circuit Switching','Virtual Circuit Switching'] },
+        { id: 'cs_u10_t2', name: 'Data Link Layer', subtopics: ['Framing','Error Detection (CRC, Parity, Hamming)','Error Correction','Stop-and-Wait','Go-Back-N','Selective Repeat','Medium Access Control','Ethernet','Bridging'] },
+        { id: 'cs_u10_t3', name: 'Network Layer', subtopics: ['IP Addressing','IPv4','Subnetting','CIDR Notation','NAT','Routing Algorithms (Dijkstra, Distance Vector)','Link State Routing','OSPF','RIP','Fragmentation','ARP','DHCP','ICMP'] },
+        { id: 'cs_u10_t4', name: 'Transport Layer', subtopics: ['UDP','TCP','TCP 3-Way Handshake','Flow Control (Sliding Window)','Congestion Control (Slow Start, AIMD)','Socket Programming'] },
+        { id: 'cs_u10_t5', name: 'Application Layer', subtopics: ['DNS','HTTP','HTTPS','FTP','SMTP','Email (POP3, IMAP)','Application Layer Protocols Overview'] }
+      ]
+    }
+  ]
+};
+
 // ===== ROADMAP DATA =====
 const ROADMAP = {
   phases: [
@@ -2168,6 +2395,12 @@ function getDefaultState() {
     theme: 'desert',
     daTopics: {},
     daSubtopics: {},
+    csTopics: {},
+    csSubtopics: {},
+    csDailyTargets: {},
+    csRevisedTopics: {},
+    csMasteryLevels: {},
+    csResourceVault: {},
     notes: [],
     scratchpad: '',
     weeklyGoals: {},
@@ -2250,6 +2483,12 @@ function loadState() {
     if (!state.resourceVault) state.resourceVault = {};
     if (!state.daTopics) state.daTopics = {};
     if (!state.daSubtopics) state.daSubtopics = {};
+    if (!state.csTopics) state.csTopics = {};
+    if (!state.csSubtopics) state.csSubtopics = {};
+    if (!state.csDailyTargets) state.csDailyTargets = {};
+    if (!state.csRevisedTopics) state.csRevisedTopics = {};
+    if (!state.csMasteryLevels) state.csMasteryLevels = {};
+    if (!state.csResourceVault) state.csResourceVault = {};
     if (state.level === undefined) state.level = 1;
     if (state.xp === undefined) state.xp = 0;
     if (state.coins === undefined) state.coins = 0;
@@ -2304,6 +2543,7 @@ function navigate(page) {
   document.querySelector(`[data-page="${page}"]`).classList.add('active');
   document.getElementById('topbar-title').textContent = {
     dashboard: 'Dashboard', 'gate-da': 'GATE DA 2027',
+    'gate-cs': 'GATE CS 2027',
     pomodoro: 'Pomodoro Timer', logs: 'Study Logs',
     analytics: 'Analytics', settings: 'Settings',
     notes: 'Study Notes Hub', goals: 'Weekly Goals', pyq: 'PYQ Tracker',
@@ -2314,6 +2554,7 @@ function navigate(page) {
   if (page !== 'dashboard' && countdownInterval) { clearInterval(countdownInterval); countdownInterval = null; }
   if (page === 'dashboard') { renderDashboard(); generateInsights(); }
   if (page === 'gate-da') renderGateDA();
+  if (page === 'gate-cs') renderGateCS();
   if (page === 'pomodoro') renderPomodoro();
   if (page === 'logs') renderLogs();
   if (page === 'notes') renderNotesHub();
@@ -2475,41 +2716,37 @@ function renderDashboard() {
     </div>`;
   })();
 
-  // This Month's Focus — uses MONTH_PLAN + pinned subjects from GATE DA tracker
+  // CS progress row
+  const csP = getCsOverallProgress();
+  phaseEl.innerHTML += `<div style="border-top:1px solid var(--border-light);padding-top:12px;margin-top:4px;">
+    <div style="display:flex;justify-content:space-between;margin-bottom:5px;">
+      <span style="font-size:12.5px;font-weight:600;color:var(--cs-blue);">💻 GATE CS 2027</span>
+      <span style="font-size:11px;font-family:var(--font-mono);color:var(--cs-blue);">${csP.pct}%</span>
+    </div>
+    <div class="progress-bar-wrap pb-h6"><div class="progress-bar-fill" style="width:${csP.pct}%;background:var(--cs-blue)"></div></div>
+    <div style="font-size:10px;color:var(--text-muted);margin-top:3px;">${csP.done}/${csP.total} topics done · 10 sections</div>
+  </div>`;
+
+  // This Month's Focus — DA + CS pinned subjects
   const nowMonth = new Date().toLocaleString('en', { month: 'long' });
   const current = MONTH_PLAN.find(m => m.month === nowMonth) || MONTH_PLAN[0];
   const pinnedNames = getPinnedUnitNames();
+  const csPinnedNames = getCsPinnedUnitNames();
   const upcomingEl = document.getElementById('dash-upcoming');
-  
-  let focusHTML = `<div style="font-size:12px;color:var(--text-muted);margin-bottom:10px);">Focus for <strong style="color:var(--text-primary)">${nowMonth} 2026</strong></div>`;
-  
-  // Pinned subjects section (from GATE DA tracker)
+
+  let focusHTML = `<div style="font-size:12px;color:var(--text-muted);margin-bottom:10px;">Focus for <strong style="color:var(--text-primary)">${nowMonth} 2026</strong></div>`;
   if (pinnedNames.length > 0) {
-    focusHTML += `<div style="font-size:10px;text-transform:uppercase;letter-spacing:1px;color:var(--da-teal);font-weight:700;margin-bottom:6px;margin-top:4px;">📌 Pinned Units</div>`;
-    focusHTML += pinnedNames.map(name => `
-      <div class="upcoming-item">
-        <div class="upcoming-dot" style="background:var(--da-teal)"></div>
-        <div class="upcoming-subject">${name}</div>
-        <span class="upcoming-month" style="background:rgba(42,157,143,0.1);color:var(--da-teal);">Pinned</span>
-      </div>`).join('');
-    if (current) {
-      focusHTML += `<div style="font-size:10px;text-transform:uppercase;letter-spacing:1px;color:var(--text-muted);font-weight:700;margin-bottom:6px;margin-top:12px;">📅 Monthly Plan</div>`;
-    }
+    focusHTML += `<div style="font-size:10px;text-transform:uppercase;letter-spacing:1px;color:var(--da-teal);font-weight:700;margin-bottom:6px;margin-top:4px;">📌 DA Pinned</div>`;
+    focusHTML += pinnedNames.map(name => `<div class="upcoming-item"><div class="upcoming-dot" style="background:var(--da-teal)"></div><div class="upcoming-subject">${name}</div><span class="upcoming-month" style="background:rgba(42,157,143,0.1);color:var(--da-teal);">DA</span></div>`).join('');
   }
-  
-  // Monthly plan subjects
+  if (csPinnedNames.length > 0) {
+    focusHTML += `<div style="font-size:10px;text-transform:uppercase;letter-spacing:1px;color:var(--cs-blue);font-weight:700;margin-bottom:6px;margin-top:8px;">📌 CS Pinned</div>`;
+    focusHTML += csPinnedNames.map(name => `<div class="upcoming-item"><div class="upcoming-dot" style="background:var(--cs-blue)"></div><div class="upcoming-subject">${name}</div><span class="upcoming-month" style="background:var(--cs-blue-light);color:var(--cs-blue);">CS</span></div>`).join('');
+  }
   if (current) {
-    focusHTML += current.subjects.map(s => `
-      <div class="upcoming-item">
-        <div class="upcoming-dot" style="background:${current.color}"></div>
-        <div class="upcoming-subject">${s}</div>
-      </div>`).join('');
+    focusHTML += `<div style="font-size:10px;text-transform:uppercase;letter-spacing:1px;color:var(--text-muted);font-weight:700;margin-bottom:6px;margin-top:12px;">📅 Monthly Plan</div>`;
+    focusHTML += current.subjects.map(s => `<div class="upcoming-item"><div class="upcoming-dot" style="background:${current.color}"></div><div class="upcoming-subject">${s}</div></div>`).join('');
   }
-  
-  if (!pinnedNames.length && !current) {
-    focusHTML += '<div class="empty-state">No upcoming subjects</div>';
-  }
-  
   upcomingEl.innerHTML = focusHTML;
 
   // Quote
@@ -2825,12 +3062,18 @@ function getAllSubjects() {
 
 // ===== POPULATE SUBJECT SELECTS =====
 function populateSubjectSelects() {
-  const daSubjects = GATE_DA.units.map(u => 'DA: ' + u.abbr);
+  const daSubjects = GATE_DA.units.map(u => ({ val: 'DA: ' + u.abbr, label: 'DA: ' + u.abbr }));
+  const csSubjects = GATE_CS.units.map(u => ({ val: 'CS: ' + u.abbr, label: 'CS: ' + u.abbr }));
   ['log-subject', 'pomo-subject-sel'].forEach(id => {
     const el = document.getElementById(id);
     if (!el) return;
     el.innerHTML = '<option value="">Select subject...</option>' +
-      daSubjects.map(s => `<option value="${s}">${s}</option>`).join('');
+      '<optgroup label="── GATE DA 2027 ──">' +
+      daSubjects.map(s => `<option value="${s.val}">${s.label}</option>`).join('') +
+      '</optgroup>' +
+      '<optgroup label="── GATE CS 2027 ──">' +
+      csSubjects.map(s => `<option value="${s.val}">${s.label}</option>`).join('') +
+      '</optgroup>';
   });
 }
 
@@ -3476,15 +3719,27 @@ function showToast(msg) {
 
 // ===== V3.0: STUDY NOTES HUB =====
 let currentNotesUnit = 0;
+let currentNotesExam = 'da'; // 'da' | 'cs'
+
+function switchNotesExam(exam) {
+  currentNotesExam = exam;
+  currentNotesUnit = 0;
+  document.getElementById('notes-tab-da').classList.toggle('active', exam === 'da');
+  document.getElementById('notes-tab-cs').classList.toggle('active', exam === 'cs');
+  renderNotesHub();
+}
 
 function renderNotesHub() {
   const nav = document.getElementById('notes-unit-nav');
   const scratch = document.getElementById('scratchpad');
   if (scratch) scratch.value = state.scratchpad || '';
-  
-  nav.innerHTML = GATE_DA.units.map((u, i) => {
+  const units = currentNotesExam === 'cs' ? GATE_CS.units : GATE_DA.units;
+  nav.innerHTML = units.map((u, i) => {
     const count = (state.notes || []).filter(n => n.unitId === u.id).length;
-    return `<div class="notes-unit-tab ${i === currentNotesUnit ? 'active' : ''}" onclick="selectNotesUnit(${i})">
+    const activeColor = currentNotesExam === 'cs' ? 'var(--cs-blue)' : 'var(--accent-primary)';
+    return `<div class="notes-unit-tab ${i === currentNotesUnit ? 'active' : ''}" 
+      onclick="selectNotesUnit(${i})"
+      style="${i === currentNotesUnit ? 'border-left-color:' + activeColor + ';color:' + activeColor + ';' : ''}">
       ${u.abbr} <span class="notes-count">${count}</span>
     </div>`;
   }).join('');
@@ -3498,21 +3753,20 @@ function selectNotesUnit(idx) {
 
 function renderNotesList() {
   const container = document.getElementById('notes-list');
-  const unit = GATE_DA.units[currentNotesUnit];
+  const units = currentNotesExam === 'cs' ? GATE_CS.units : GATE_DA.units;
+  const unit = units[currentNotesUnit];
   const notes = (state.notes || []).filter(n => n.unitId === unit.id).reverse();
-  
   if (!notes.length) {
     container.innerHTML = `<div class="empty-state">No notes for ${unit.abbr} yet. Add one below!</div>`;
     return;
   }
-  
   container.innerHTML = notes.map(n => `
     <div class="note-card">
       <div class="note-del" onclick="deleteNote('${n.id}')">✕</div>
       <div class="note-text">${n.text.replace(/\n/g, '<br>')}</div>
       <div class="note-meta">
         <span>${n.date}</span>
-        <span class="note-tag">${unit.abbr}</span>
+        <span class="note-tag" style="background:${currentNotesExam==='cs'?'var(--cs-blue-light)':'var(--da-teal-light)'};color:${currentNotesExam==='cs'?'var(--cs-blue)':'var(--da-teal)'};">${unit.abbr}</span>
       </div>
     </div>
   `).join('');
@@ -3521,10 +3775,12 @@ function renderNotesList() {
 function addNote() {
   const input = document.getElementById('note-input');
   if (!input || !input.value.trim()) return;
-  const unit = GATE_DA.units[currentNotesUnit];
+  const units = currentNotesExam === 'cs' ? GATE_CS.units : GATE_DA.units;
+  const unit = units[currentNotesUnit];
   const newNote = {
     id: Date.now().toString(),
     unitId: unit.id,
+    exam: currentNotesExam,
     text: input.value,
     date: new Date().toLocaleString()
   };
@@ -3533,7 +3789,7 @@ function addNote() {
   saveState();
   input.value = '';
   renderNotesList();
-  renderNotesHub(); // Update count
+  renderNotesHub();
   showToast('Note added! 📝');
 }
 
@@ -4082,76 +4338,26 @@ function renderDaTimeline() {
 
 // ===== PREMIUM FEATURES =====
 
-function handleGlobalSearch(q) {
-  const resEL = document.getElementById('search-res');
-  if (!q || !q.trim()) { resEL.style.display = 'none'; return; }
-  q = q.toLowerCase();
-  const results = [];
-  GATE_DA.units.forEach((u, uIdx) => {
-    const t = u.topics[0];
-    if (!t) return;
-    t.subtopics.forEach((sub, sIdx) => {
-      if (sub.toLowerCase().includes(q) || u.name.toLowerCase().includes(q)) {
-        results.push({ name: sub, unit: u.name, uIdx, sIdx, topicId: t.id });
-      }
-    });
-  });
-  if (!results.length) {
-    resEL.innerHTML = '<div style="padding:12px;color:var(--text-muted);font-size:12px;text-align:center;">No matches found</div>';
-  } else {
-    resEL.innerHTML = results.slice(0, 8).map(r => `
-      <div class="search-res-item" onclick="jumpToTopic(${r.uIdx}, '${r.topicId}', ${r.sIdx})">
-        <div class="search-res-title">${r.name}</div>
-        <div class="search-res-path">${r.unit}</div>
-      </div>
-    `).join('');
-  }
-  resEL.style.display = 'block';
-}
-
-function jumpToTopic(uIdx, topicId, sIdx) {
-  navigate('gate-da');
-  selectDaUnit(uIdx);
-  setTimeout(() => {
-    toggleDaSubtopic(topicId, sIdx);
-    document.getElementById('global-search').value = '';
-    document.getElementById('search-res').style.display = 'none';
-  }, 100);
-}
-
 function togglePin(key) {
   if (!state.dailyTargets) state.dailyTargets = {};
-  if (state.dailyTargets[key]) delete state.dailyTargets[key];
-  else state.dailyTargets[key] = true;
+  const nowPinned = !state.dailyTargets[key];
+  if (nowPinned) state.dailyTargets[key] = true;
+  else delete state.dailyTargets[key];
   saveState();
   if (currentPage === 'gate-da') renderDaUnitContent(currentDaUnit);
   if (currentPage === 'dashboard') renderDashboard();
-  // Refresh the 'This Month's Focus' card on dashboard if it's visible
-  const upcomingEl = document.getElementById('dash-upcoming');
-  if (upcomingEl && currentPage !== 'dashboard') {
-    // Refresh just the upcoming card without a full re-render
-    const pinnedNames = getPinnedUnitNames();
-    const nowMonth = new Date().toLocaleString('en', { month: 'long' });
-    const current = MONTH_PLAN.find(m => m.month === nowMonth) || MONTH_PLAN[0];
-    let html = `<div style="font-size:12px;color:var(--text-muted);margin-bottom:10px;">Focus for <strong style="color:var(--text-primary)">${nowMonth}</strong></div>`;
-    if (pinnedNames.length > 0) {
-      html += `<div style="font-size:10px;text-transform:uppercase;letter-spacing:1px;color:var(--da-teal);font-weight:700;margin-bottom:6px;">📌 Pinned</div>`;
-      html += pinnedNames.map(name => `<div class="upcoming-item"><div class="upcoming-dot" style="background:var(--da-teal)"></div><div class="upcoming-subject">${name}</div><span class="upcoming-month" style="background:rgba(42,157,143,0.1);color:var(--da-teal);">Pinned</span></div>`).join('');
-    }
-    if (current) html += current.subjects.map(s => `<div class="upcoming-item"><div class="upcoming-dot" style="background:${current.color}"></div><div class="upcoming-subject">${s}</div></div>`).join('');
-    upcomingEl.innerHTML = html;
-  }
-  showToast(state.dailyTargets[key] ? 'Pinned to Today Focus 📌' : 'Unpinned');
+  showToast(nowPinned ? 'Pinned to Today Focus 📌' : 'Unpinned');
 }
 
 function toggleRevise(key) {
   if (!state.revisedTopics) state.revisedTopics = {};
-  if (state.revisedTopics[key]) delete state.revisedTopics[key];
-  else state.revisedTopics[key] = true;
+  const nowRevised = !state.revisedTopics[key];
+  if (nowRevised) state.revisedTopics[key] = true;
+  else delete state.revisedTopics[key];
   saveState();
   if (currentPage === 'gate-da') renderDaUnitContent(currentDaUnit);
   if (currentPage === 'dashboard') renderDashboard();
-  showToast(state.revisedTopics[key] ? 'Marked as Revised ⭐' : 'Unmarked Revised');
+  showToast(nowRevised ? 'Marked as Revised ⭐' : 'Unmarked Revised');
 }
 
 function renderFocusWidget() {
@@ -4578,6 +4784,339 @@ function renderMockChart(tests) {
     <path d="${path}" stroke="var(--accent-primary)" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" />
     ${points}
   `;
+}
+
+// ===== GATE CS LOGIC =====
+let currentCsUnit = 0;
+let currentCsTab = 'tracker';
+
+function getCsTopicProgress(unit) {
+  let done = 0, total = unit.topics.length;
+  unit.topics.forEach(t => { if (state.csTopics[t.id]) done++; });
+  return { done, total, pct: total ? Math.round((done/total)*100) : 0 };
+}
+
+function getCsSubtopicProgress(unit) {
+  let done = 0, total = 0;
+  unit.topics.forEach(t => {
+    t.subtopics.forEach((_, i) => {
+      total++;
+      if (state.csSubtopics[t.id + '_' + i]) done++;
+    });
+  });
+  return { done, total };
+}
+
+function getCsOverallProgress() {
+  let done = 0, total = 0, subDone = 0, subTotal = 0;
+  GATE_CS.units.forEach(u => {
+    const p = getCsTopicProgress(u);
+    done += p.done; total += p.total;
+    const sp = getCsSubtopicProgress(u);
+    subDone += sp.done; subTotal += sp.total;
+  });
+  return { done, total, subDone, subTotal, pct: total ? Math.round((done/total)*100) : 0 };
+}
+
+function renderGateCS() {
+  const overall = getCsOverallProgress();
+  const el = id => document.getElementById(id);
+  if (el('cs-total-topics-chip')) el('cs-total-topics-chip').textContent = overall.total;
+  if (el('cs-done-topics-chip')) el('cs-done-topics-chip').textContent = overall.done;
+  if (el('cs-overall-pct-chip')) el('cs-overall-pct-chip').textContent = overall.pct + '%';
+  if (el('cs-overall-bar')) el('cs-overall-bar').style.width = overall.pct + '%';
+  if (el('cs-stat-done')) el('cs-stat-done').textContent = overall.done;
+  if (el('cs-stat-subtopics')) el('cs-stat-subtopics').textContent = overall.subDone;
+  const csPomos = state.pomoHistory.filter(p => p.type === 'focus' && p.subject && p.subject.startsWith('CS:')).length;
+  if (el('cs-stat-pomos')) el('cs-stat-pomos').textContent = csPomos;
+  const daysLeft = Math.max(0, Math.ceil((new Date(getExamDate()) - new Date()) / (1000*60*60*24)));
+  if (el('cs-stat-days')) el('cs-stat-days').textContent = daysLeft;
+  renderCsUnitNav();
+  renderCsUnitContent(currentCsUnit);
+}
+
+function renderCsUnitNav() {
+  const nav = document.getElementById('cs-unit-nav');
+  if (!nav) return;
+  nav.innerHTML = GATE_CS.units.map((u, i) => {
+    const sp = getCsSubtopicProgress(u);
+    const pct = sp.total ? Math.round((sp.done / sp.total) * 100) : 0;
+    return `<div class="da-unit-tab ${i === currentCsUnit ? 'active' : ''}" 
+      style="${i === currentCsUnit ? 'border-left-color:var(--cs-blue);color:var(--cs-blue);' : ''}"
+      onclick="selectCsUnit(${i})">
+      ${u.abbr}
+      <div class="da-tab-pct">${sp.done}/${sp.total} · ${pct}%</div>
+    </div>`;
+  }).join('');
+}
+
+function selectCsUnit(idx) {
+  currentCsUnit = idx;
+  renderCsUnitNav();
+  renderCsUnitContent(idx);
+}
+
+function renderCsUnitContent(idx) {
+  const unit = GATE_CS.units[idx];
+  const p = getCsTopicProgress(unit);
+  const sp = getCsSubtopicProgress(unit);
+  const content = document.getElementById('cs-unit-content');
+  if (!content) return;
+  const topicId = unit.id + '_t1';
+  const isUnitDone = !!state.csTopics[unit.id + '_all'];
+
+  content.innerHTML = `
+    <div class="da-unit-header">
+      <div style="flex:1;">
+        <div style="display:flex;align-items:center;gap:12px;">
+          <div class="da-topic-check ${isUnitDone ? 'done' : ''}" 
+            onclick="toggleCsUnitAll('${unit.id}')" 
+            style="width:24px;height:24px;font-size:13px;border-radius:6px;cursor:pointer;border-color:var(--cs-blue);">
+            ${isUnitDone ? '✓' : ''}
+          </div>
+          <div class="da-unit-title">${unit.name}</div>
+        </div>
+        <div class="da-unit-desc" style="margin-top:6px;">${unit.desc} · Target: ${unit.months}</div>
+        <div style="margin-top:10px;" class="progress-bar-wrap pb-h6">
+          <div class="progress-bar-fill" style="width:${p.pct}%;background:${unit.color}"></div>
+        </div>
+        <div style="font-size:11px;color:var(--text-muted);margin-top:4px;font-family:var(--font-mono);">${sp.done}/${sp.total} subtopics · ${p.done}/${p.total} topics</div>
+      </div>
+      <div class="da-unit-progress-block">
+        <div class="da-unit-pct" style="color:${unit.color}">${p.pct}%</div>
+        <div class="da-unit-done-txt">${p.done}/${p.total} done</div>
+      </div>
+    </div>
+    <div class="da-topic-grid">
+      ${unit.topics.map(t => renderCsTopicCard(t)).join('')}
+    </div>`;
+}
+
+function toggleCsUnitAll(unitId) {
+  const unit = GATE_CS.units.find(u => u.id === unitId);
+  if (!unit) return;
+  const key = unitId + '_all';
+  const isNowDone = !state.csTopics[key];
+  if (isNowDone) {
+    state.csTopics[key] = true;
+    unit.topics.forEach(t => {
+      state.csTopics[t.id] = true;
+      t.subtopics.forEach((_, i) => { state.csSubtopics[t.id + '_' + i] = true; });
+    });
+    showToast('Section completed! 🎉');
+  } else {
+    delete state.csTopics[key];
+    unit.topics.forEach(t => {
+      delete state.csTopics[t.id];
+      t.subtopics.forEach((_, i) => { delete state.csSubtopics[t.id + '_' + i]; });
+    });
+  }
+  saveState();
+  updateXP(isNowDone ? 20 : 0);
+  renderCsUnitContent(currentCsUnit);
+  renderCsUnitNav();
+  updateCsChips();
+}
+
+function renderCsTopicCard(topic) {
+  const subDone = topic.subtopics.filter((_, i) => state.csSubtopics[topic.id + '_' + i]).length;
+  const topicDone = !!state.csTopics[topic.id];
+  return `
+  <div class="da-topic-card open" id="cs-card-${topic.id}" style="border:none;background:transparent;">
+    <div class="da-subtopics" style="display:block;padding:0;border:none;">
+      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;color:var(--cs-blue);padding:6px 0 8px;display:flex;align-items:center;gap:8px;">
+        <div class="da-topic-check ${topicDone ? 'done' : ''}" 
+          onclick="toggleCsTopic('${topic.id}')" 
+          style="border-color:var(--cs-blue);width:16px;height:16px;font-size:9px;cursor:pointer;${topicDone?'background:var(--cs-blue);':''}">
+          ${topicDone?'✓':''}
+        </div>
+        ${topic.name} <span style="font-weight:400;color:var(--text-muted);text-transform:none;letter-spacing:0;">(${subDone}/${topic.subtopics.length})</span>
+      </div>
+      ${topic.subtopics.map((sub, i) => {
+        const key = topic.id + '_' + i;
+        const sdone = !!state.csSubtopics[key];
+        const isPinned = state.csDailyTargets && state.csDailyTargets[key];
+        const isRevised = state.csRevisedTopics && state.csRevisedTopics[key];
+        const mastery = state.csMasteryLevels ? (state.csMasteryLevels[key] || 0) : 0;
+        const resUrl = state.csResourceVault ? state.csResourceVault[key] : null;
+        return `<div class="da-subtopic" style="padding:10px 14px;background:var(--bg-card);border-radius:var(--radius-sm);border:1px solid var(--border-light);margin-bottom:8px;display:flex;align-items:center;">
+          <div class="da-sub-check ${sdone?'done':''}" onclick="toggleCsSubtopic('${topic.id}',${i})" style="${sdone?'background:var(--cs-blue);border-color:var(--cs-blue);':''}">
+            ${sdone?'✓':''}
+          </div>
+          <span class="da-sub-name ${sdone?'done':''}" style="font-size:13px;flex:1;">${sub}</span>
+          <div style="margin-left:auto;display:flex;align-items:center;gap:4px;">
+            ${resUrl ? `<span class="resource-icon" onclick="window.open('${resUrl}','_blank')" title="View Resource">🔗</span>` : ''}
+            <span class="resource-icon" onclick="toggleCsResource('${key}')" title="Attach Resource">＋</span>
+            <div class="mastery-controls">
+              <div class="mastery-dot ${mastery===1?'lvl-1':''}" onclick="updateCsMastery('${key}',1)" title="Struggling"></div>
+              <div class="mastery-dot ${mastery===2?'lvl-2':''}" onclick="updateCsMastery('${key}',2)" title="Okay"></div>
+              <div class="mastery-dot ${mastery===3?'lvl-3':''}" onclick="updateCsMastery('${key}',3)" title="Confident"></div>
+            </div>
+            <div class="da-sub-pin ${isPinned?'pinned':''}" onclick="toggleCsPin('${key}')" title="Pin to Today's Focus">📌</div>
+            <div class="da-sub-rev ${isRevised?'revised':''}" onclick="toggleCsRevise('${key}')" title="Mark as Revised">⭐</div>
+          </div>
+        </div>`;
+      }).join('')}
+    </div>
+  </div>`;
+}
+
+function toggleCsTopic(topicId) {
+  const isNowDone = !state.csTopics[topicId];
+  const unitId = topicId.split('_').slice(0,2).join('_');
+  const unit = GATE_CS.units.find(u => u.id === unitId);
+  const topic = unit ? unit.topics.find(t => t.id === topicId) : null;
+  if (isNowDone) {
+    state.csTopics[topicId] = true;
+    if (topic) topic.subtopics.forEach((_, i) => { state.csSubtopics[topicId+'_'+i] = true; });
+    updateXP(10); updateCoins(2);
+    showToast('Topic done! 🎯');
+  } else {
+    delete state.csTopics[topicId];
+    if (topic) topic.subtopics.forEach((_, i) => { delete state.csSubtopics[topicId+'_'+i]; });
+  }
+  saveState();
+  renderCsUnitContent(currentCsUnit);
+  renderCsUnitNav();
+  updateCsChips();
+}
+
+function toggleCsSubtopic(topicId, subIdx) {
+  const key = topicId + '_' + subIdx;
+  const isNowDone = !state.csSubtopics[key];
+  if (isNowDone) { state.csSubtopics[key] = true; updateXP(3); showToast('Subtopic ✓'); }
+  else delete state.csSubtopics[key];
+  saveState();
+  const unitId = topicId.split('_').slice(0,2).join('_');
+  const unitIdx = GATE_CS.units.findIndex(u => u.id === unitId);
+  if (unitIdx !== -1) { renderCsUnitContent(unitIdx); renderCsUnitNav(); }
+  updateCsChips();
+  updateStreak();
+}
+
+function toggleCsPin(key) {
+  if (!state.csDailyTargets) state.csDailyTargets = {};
+  const nowPinned = !state.csDailyTargets[key];
+  if (nowPinned) state.csDailyTargets[key] = true;
+  else delete state.csDailyTargets[key];
+  saveState();
+  if (currentPage === 'gate-cs') renderCsUnitContent(currentCsUnit);
+  if (currentPage === 'dashboard') renderDashboard();
+  showToast(nowPinned ? 'Pinned to Focus 📌' : 'Unpinned');
+}
+
+function toggleCsRevise(key) {
+  if (!state.csRevisedTopics) state.csRevisedTopics = {};
+  if (state.csRevisedTopics[key]) delete state.csRevisedTopics[key];
+  else state.csRevisedTopics[key] = true;
+  saveState();
+  if (currentPage === 'gate-cs') renderCsUnitContent(currentCsUnit);
+  showToast(state.csRevisedTopics[key] ? 'Marked for Revision ⭐' : 'Unmarked');
+}
+
+function updateCsMastery(key, lvl) {
+  if (!state.csMasteryLevels) state.csMasteryLevels = {};
+  if (state.csMasteryLevels[key] === lvl) delete state.csMasteryLevels[key];
+  else state.csMasteryLevels[key] = lvl;
+  saveState();
+  renderCsUnitContent(currentCsUnit);
+}
+
+function toggleCsResource(key) {
+  const url = prompt('Enter YouTube or Documentation URL for this topic:', state.csResourceVault[key] || '');
+  if (url === null) return;
+  if (!url) delete state.csResourceVault[key];
+  else state.csResourceVault[key] = url;
+  saveState();
+  renderCsUnitContent(currentCsUnit);
+}
+
+function updateCsChips() {
+  const overall = getCsOverallProgress();
+  const el = id => document.getElementById(id);
+  if (el('cs-total-topics-chip')) el('cs-total-topics-chip').textContent = overall.total;
+  if (el('cs-done-topics-chip')) el('cs-done-topics-chip').textContent = overall.done;
+  if (el('cs-overall-pct-chip')) el('cs-overall-pct-chip').textContent = overall.pct + '%';
+  if (el('cs-overall-bar')) el('cs-overall-bar').style.width = overall.pct + '%';
+  if (el('cs-stat-done')) el('cs-stat-done').textContent = overall.done;
+  if (el('cs-stat-subtopics')) el('cs-stat-subtopics').textContent = overall.subDone;
+}
+
+function switchCsTab(tab) {
+  currentCsTab = tab;
+  ['tracker','tips'].forEach(t => {
+    const view = document.getElementById('cs-view-' + t);
+    const btn = document.getElementById('cs-tab-' + t);
+    if (view) view.style.display = t === tab ? '' : 'none';
+    if (btn) btn.classList.toggle('active', t === tab);
+  });
+}
+
+// CS pinned units for dashboard
+function getCsPinnedUnitNames() {
+  const targets = state.csDailyTargets || {};
+  const pinnedUnitIds = new Set();
+  Object.keys(targets).filter(k => targets[k]).forEach(k => {
+    const parts = k.split('_');
+    if (parts.length >= 2) pinnedUnitIds.add(parts[0] + '_' + parts[1]);
+  });
+  return Array.from(pinnedUnitIds).map(uid => {
+    const unit = GATE_CS.units.find(u => u.id === uid);
+    return unit ? unit.name : null;
+  }).filter(Boolean);
+}
+
+// CS in global search
+let _searchResults = []; // cache for click handler
+function handleGlobalSearch(q) {
+  const resEL = document.getElementById('search-res');
+  if (!q || !q.trim()) { resEL.style.display = 'none'; return; }
+  q = q.toLowerCase();
+  _searchResults = [];
+  // Search DA
+  GATE_DA.units.forEach((u, uIdx) => {
+    const t = u.topics[0];
+    if (!t) return;
+    t.subtopics.forEach((sub, sIdx) => {
+      if (sub.toLowerCase().includes(q) || u.name.toLowerCase().includes(q)) {
+        _searchResults.push({ name: sub, unit: '◉ ' + u.name, uIdx, sIdx, topicId: t.id, exam: 'da' });
+      }
+    });
+  });
+  // Search CS
+  GATE_CS.units.forEach((u, uIdx) => {
+    u.topics.forEach(t => {
+      t.subtopics.forEach((sub, sIdx) => {
+        if (sub.toLowerCase().includes(q) || u.name.toLowerCase().includes(q) || t.name.toLowerCase().includes(q)) {
+          _searchResults.push({ name: sub, unit: '💻 ' + u.name + ' › ' + t.name, uIdx, sIdx, topicId: t.id, exam: 'cs' });
+        }
+      });
+    });
+  });
+  if (!_searchResults.length) {
+    resEL.innerHTML = '<div style="padding:12px;color:var(--text-muted);font-size:12px;text-align:center;">No matches found</div>';
+  } else {
+    resEL.innerHTML = _searchResults.slice(0, 10).map((r, i) => `
+      <div class="search-res-item" onclick="jumpToSearchResult(${i})">
+        <div class="search-res-title">${r.name.replace(/</g,'&lt;')}</div>
+        <div class="search-res-path">${r.unit.replace(/</g,'&lt;')}</div>
+      </div>`).join('');
+  }
+  resEL.style.display = 'block';
+}
+
+function jumpToSearchResult(idx) {
+  const r = _searchResults[idx];
+  if (!r) return;
+  if (r.exam === 'cs') {
+    navigate('gate-cs');
+    selectCsUnit(r.uIdx);
+  } else {
+    navigate('gate-da');
+    selectDaUnit(r.uIdx);
+  }
+  document.getElementById('global-search').value = '';
+  document.getElementById('search-res').style.display = 'none';
 }
 
 // ===== EXAM DATES =====

@@ -1,0 +1,75 @@
+{
+  "name": "StudyForge — GATE DA 2027 Tracker",
+  "short_name": "StudyForge",
+  "description": "Offline GATE DA 2027 prep tracker with Pomodoro, PYQ, notes, flashcards and analytics.",
+  "start_url": "/StudyForge-GATE-DA-Tracker/",
+  "scope": "/StudyForge-GATE-DA-Tracker/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#1e1c1a",
+  "theme_color": "#c17c3e",
+  "lang": "en",
+  "categories": ["education", "productivity"],
+  "icons": [
+    {
+      "src": "icons/icon-72.png",
+      "sizes": "72x72",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icons/icon-96.png",
+      "sizes": "96x96",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icons/icon-128.png",
+      "sizes": "128x128",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "screenshots/dashboard.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "label": "Dashboard with live countdown"
+    },
+    {
+      "src": "screenshots/tracker.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "label": "GATE DA Unit Tracker"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Pomodoro Timer",
+      "short_name": "Timer",
+      "description": "Jump straight to the focus timer",
+      "url": "/StudyForge-GATE-DA-Tracker/#pomodoro",
+      "icons": [{ "src": "icons/icon-96.png", "sizes": "96x96" }]
+    },
+    {
+      "name": "GATE DA Tracker",
+      "short_name": "Tracker",
+      "description": "Open the GATE DA syllabus tracker",
+      "url": "/StudyForge-GATE-DA-Tracker/#gate-da",
+      "icons": [{ "src": "icons/icon-96.png", "sizes": "96x96" }]
+    }
+  ]
+}

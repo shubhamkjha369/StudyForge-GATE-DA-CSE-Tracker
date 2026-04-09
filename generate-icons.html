@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>StudyForge Icon Generator</title>
+<style>
+  body { font-family: sans-serif; background: #1e1c1a; color: #fff; padding: 30px; }
+  h1 { color: #c17c3e; }
+  .instructions { background: #2d2a27; padding: 20px; border-radius: 10px; margin: 20px 0; line-height: 1.8; }
+  button { background: #c17c3e; color: #fff; border: none; padding: 14px 28px; border-radius: 8px; font-size: 16px; cursor: pointer; margin: 10px 0; }
+  button:hover { background: #a8692e; }
+  .icon-grid { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 20px; }
+  .icon-wrap { text-align: center; }
+  .icon-wrap p { font-size: 12px; color: #9a928a; margin-top: 6px; }
+  canvas { border-radius: 22%; border: 1px solid #3d3a35; }
+  .status { color: #5b8a6f; font-weight: 600; margin-top: 10px; }
+</style>
+</head>
+<body>
+
+<h1>📱 StudyForge — PWA Icon Generator</h1>
+<div class="instructions">
+  <strong>Instructions:</strong><br>
+  1. Click <strong>"Generate & Download All Icons"</strong> below<br>
+  2. All 5 icon sizes will download automatically (72, 96, 128, 192, 512px)<br>
+  3. Create a folder called <code>icons/</code> in your GitHub repo<br>
+  4. Upload all downloaded PNG files into that <code>icons/</code> folder<br>
+  5. That's it — your PWA manifest will find them automatically
+</div>
+
+<button onclick="generateAll()">⬇️ Generate & Download All Icons</button>
+<div class="status" id="status"></div>
+<div class="icon-grid" id="icon-grid"></div>
+
+<script>
+const SIZES = [72, 96, 128, 192, 512];
+
+function drawIcon(size) {
+  const canvas = document.createElement('canvas');
+  canvas.width = size;
+  canvas.height = size;
+  const ctx = canvas.getContext('2d');
+
+  // Background
+  const grad = ctx.createLinearGradient(0, 0, size, size);
+  grad.addColorStop(0, '#2d2a27');
+  grad.addColorStop(1, '#1e1c1a');
+  ctx.fillStyle = grad;
+
+  // Rounded rect
+  const r = size * 0.22;
+  ctx.beginPath();
+  ctx.moveTo(r, 0);
+  ctx.lineTo(size - r, 0);
+  ctx.quadraticCurveTo(size, 0, size, r);
+  ctx.lineTo(size, size - r);
+  ctx.quadraticCurveTo(size, size, size - r, size);
+  ctx.lineTo(r, size);
+  ctx.quadraticCurveTo(0, size, 0, size - r);
+  ctx.lineTo(0, r);
+  ctx.quadraticCurveTo(0, 0, r, 0);
+  ctx.closePath();
+  ctx.fill();
+
+  // Accent ring
+  ctx.strokeStyle = '#c17c3e';
+  ctx.lineWidth = size * 0.04;
+  ctx.globalAlpha = 0.3;
+  ctx.stroke();
+  ctx.globalAlpha = 1;
+
+  // "SF" text
+  ctx.fillStyle = '#c17c3e';
+  ctx.font = `bold ${size * 0.38}px 'Georgia', serif`;
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText('SF', size / 2, size * 0.45);
+
+  // Tagline dot
+  ctx.fillStyle = '#5b8a6f';
+  ctx.beginPath();
+  ctx.arc(size / 2, size * 0.75, size * 0.06, 0, Math.PI * 2);
+  ctx.fill();
+
+  return canvas;
+}
+
+function downloadCanvas(canvas, filename) {
+  return new Promise(resolve => {
+    canvas.toBlob(blob => {
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = filename;
+      a.click();
+      URL.revokeObjectURL(url);
+      setTimeout(resolve, 300);
+    }, 'image/png');
+  });
+}
+
+async function generateAll() {
+  const grid = document.getElementById('icon-grid');
+  const status = document.getElementById('status');
+  grid.innerHTML = '';
+  status.textContent = 'Generating icons...';
+
+  for (const size of SIZES) {
+    const canvas = drawIcon(size);
+
+    // Show preview
+    const wrap = document.createElement('div');
+    wrap.className = 'icon-wrap';
+    const preview = drawIcon(Math.min(size, 96));
+    wrap.appendChild(preview);
+    const label = document.createElement('p');
+    label.textContent = `icon-${size}.png`;
+    wrap.appendChild(label);
+    grid.appendChild(wrap);
+
+    // Download
+    await downloadCanvas(canvas, `icon-${size}.png`);
+  }
+
+  status.textContent = '✅ All 5 icons downloaded! Upload them to your icons/ folder on GitHub.';
+}
+</script>
+</body>
+</html>

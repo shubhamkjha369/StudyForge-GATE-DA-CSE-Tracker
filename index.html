@@ -3,7 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>StudyForge — Master Exam Tracker</title>
+<title>StudyForge — GATE DA 2027 Tracker</title>
+
+<!-- ===== PWA META ===== -->
+<meta name="description" content="Offline GATE DA 2027 prep tracker. Pomodoro, PYQ, notes, flashcards, analytics. No login. No server.">
+<meta name="theme-color" content="#c17c3e">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="StudyForge">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="icons/icon-512.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Fraunces:ital,wght@0,300;0,600;1,300&display=swap" rel="stylesheet">
 <style>
@@ -4921,6 +4933,21 @@ init();
     <button class="calc-btn" onclick="calcAction('num', '.')">.</button>
   </div>
 </div>
+
+<!-- ===== PWA SERVICE WORKER REGISTRATION ===== -->
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/StudyForge-GATE-DA-Tracker/service-worker.js')
+        .then(reg => {
+          console.log('[StudyForge] SW registered, scope:', reg.scope);
+          // Check for updates every 60 seconds
+          setInterval(() => reg.update(), 60000);
+        })
+        .catch(err => console.warn('[StudyForge] SW registration failed:', err));
+    });
+  }
+</script>
 
 </body>
 </html>

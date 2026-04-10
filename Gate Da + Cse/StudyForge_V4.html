@@ -2436,6 +2436,8 @@ let timerState = {
   running: false,
   interval: null,
   sessionNum: 1,
+  deadline: null,       // Date.now() ms when timer will reach 0
+  pausedSecondsLeft: null, // seconds remaining at the moment of pause
   settings: { focus: 25, short: 5, long: 15 }
 };
 
@@ -3095,6 +3097,8 @@ function renderPomodoro() {
 function setTimerMode(mode) {
   if (timerState.running) return;
   timerState.mode = mode;
+  timerState.deadline = null;
+  timerState.pausedSecondsLeft = null;
   document.querySelectorAll('.timer-mode-btn').forEach((b, i) => {
     b.classList.toggle('active', ['focus', 'short', 'long'][i] === mode);
   });
@@ -3127,18 +3131,35 @@ function startTimer() {
   timerState.running = true;
   document.getElementById('timer-start-btn').textContent = '⏸';
   document.getElementById('timer-ring-wrap').classList.add('timer-running');
+
+  // Set the deadline based on remaining seconds (supports resume-after-pause)
+  const secsLeft = timerState.pausedSecondsLeft !== null
+    ? timerState.pausedSecondsLeft
+    : timerState.seconds;
+  timerState.deadline = Date.now() + secsLeft * 1000;
+  timerState.pausedSecondsLeft = null;
+
+  // Use 250ms interval — small enough to feel accurate, lightweight enough to not matter
   timerState.interval = setInterval(() => {
-    timerState.seconds--;
+    const remaining = Math.max(0, Math.ceil((timerState.deadline - Date.now()) / 1000));
+    timerState.seconds = remaining;
     updateTimerDisplay();
-    if (timerState.seconds <= 0) {
+    if (remaining <= 0) {
       timerCompleted();
     }
-  }, 1000);
+  }, 250);
 }
 
 function pauseTimer() {
   timerState.running = false;
   clearInterval(timerState.interval);
+  timerState.interval = null;
+  // Capture exact remaining seconds at the moment of pause
+  if (timerState.deadline !== null) {
+    timerState.pausedSecondsLeft = Math.max(0, Math.ceil((timerState.deadline - Date.now()) / 1000));
+    timerState.seconds = timerState.pausedSecondsLeft;
+  }
+  timerState.deadline = null;
   document.getElementById('timer-start-btn').textContent = '▶';
   document.getElementById('timer-ring-wrap').classList.remove('timer-running');
 }
@@ -3148,6 +3169,8 @@ function resetTimer() {
   const mins = { focus: timerState.settings.focus, short: timerState.settings.short, long: timerState.settings.long }[timerState.mode];
   timerState.seconds = mins * 60;
   timerState.totalSeconds = mins * 60;
+  timerState.deadline = null;
+  timerState.pausedSecondsLeft = null;
   updateTimerDisplay();
 }
 

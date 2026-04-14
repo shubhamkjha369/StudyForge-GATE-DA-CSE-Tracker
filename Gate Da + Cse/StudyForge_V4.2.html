@@ -220,13 +220,12 @@ body {
 .page-header p { font-size: 14px; color: var(--text-muted); margin-top: 4px; }
 
 /* ===== CARDS ===== */
-.main-card {
-  background: #0f172a; /* dark blue/black */
-  color: #e2e8f0;      /* soft white */
-  border-radius: 12px;
-  padding: 20px;
-
-  border: 1px solid rgba(34, 211, 238, 0.3); /* neon border */
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 20px 24px;
+  box-shadow: var(--shadow-sm);
 }
 .card-sm { padding: 16px 20px; }
 .card-title { font-size: 11px; letter-spacing: 1.2px; text-transform: uppercase; color: var(--text-muted); font-weight: 600; margin-bottom: 8px; }
@@ -464,8 +463,7 @@ body {
   color: var(--text-primary); background: var(--bg-base); outline: none;
   transition: border-color var(--transition);
 }
-.form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--accent-primary); background: #fff; }
-.form-group textarea { resize: vertical; min-height: 80px; }
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--accent-primary); background: var(--bg-card); }.form-group textarea { resize: vertical; min-height: 80px; }
 .form-full { grid-column: 1 / -1; }
 
 .log-table-wrap { margin-top: 24px; overflow-x: auto; }
@@ -588,7 +586,7 @@ body {
 
 .flashcard-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; margin-top: 24px; }
 .fc-card { perspective: 1000px; height: 180px; cursor: pointer; }
-.fc-inner { position: relative; width: 100%; height: 100%; text-align: center; transition: transform 0.6s; transform-style: preserve-3d; }
+.fc-inner { position: relative; width: 100%; height: 100%; text-align: center; transition: transform 0.6s; transform-style: preserve-3d; backface-visibility:hidden; }
 .fc-card.flipped .fc-inner { transform: rotateY(180deg); }
 .fc-front, .fc-back { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; display: flex; align-items: center; justify-content: center; padding: 24px; border-radius: var(--radius-md); box-shadow: var(--shadow-sm); border: 1px solid var(--border); font-size: 16px; font-weight: 500; }
 .fc-front { background: var(--bg-card); color: var(--text-primary); }
@@ -794,7 +792,10 @@ body {
 [data-theme="neon"] .topbar {
   border-bottom-color: var(--accent-primary);
 }
-
+.cs-hero { background: linear-gradient(135deg,#eef2ff 0%,#e0e8ff 50%,#f0fff4 100%); }
+[data-theme="neon"] .cs-hero { background: linear-gradient(135deg, #0a0a10 0%, #0d0d1a 50%, #0a1010 100%) !important; }
+[data-theme="dark"] .cs-hero { background: linear-gradient(135deg, #141420 0%, #0f0f1a 100%) !important; }
+  
 /* ===== GATE DA STYLES ===== */
 :root {
   --da-teal-light: rgba(42,157,143,0.12);
@@ -1136,6 +1137,10 @@ body {
 }
 .dash-exam-btn:hover { background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.85); }
 .dash-exam-btn.active { background: rgba(255,255,255,0.15); color: #fff; border-color: rgba(255,255,255,0.4); }
+    input:focus {
+        background-color: #ffffff;
+        color: #1e1e1e;
+    }
 </style>
 </head>
 <body>
@@ -1496,7 +1501,7 @@ body {
       </div>
 
       <!-- Hero -->
-      <div class="da-hero" style="background:linear-gradient(135deg,#eef2ff 0%,#e0e8ff 50%,#f0fff4 100%);">
+      <div class="da-hero cs-hero">
         <div style="display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:12px;">
           <div>
             <h2>GATE Computer Science — 2027</h2>

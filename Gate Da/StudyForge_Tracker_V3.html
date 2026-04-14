@@ -59,7 +59,17 @@
   --sidebar-width: 240px;
   --transition: 0.2s ease;
 }
+input, textarea, select {
+  background-color: #0f172a;   /* dark background */
+  color: #ffffff;              /* white text */
+  border: 1px solid #22d3ee;   /* neon border */
+}
 
+/* Placeholder text */
+input::placeholder,
+textarea::placeholder {
+  color: #94a3b8; /* light grey */
+}
 /* ===== RESET ===== */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }

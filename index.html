@@ -463,8 +463,7 @@ body {
   color: var(--text-primary); background: var(--bg-base); outline: none;
   transition: border-color var(--transition);
 }
-.form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--accent-primary); background: #fff; }
-.form-group textarea { resize: vertical; min-height: 80px; }
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--accent-primary); background: var(--bg-card); }.form-group textarea { resize: vertical; min-height: 80px; }
 .form-full { grid-column: 1 / -1; }
 
 .log-table-wrap { margin-top: 24px; overflow-x: auto; }
@@ -793,7 +792,10 @@ body {
 [data-theme="neon"] .topbar {
   border-bottom-color: var(--accent-primary);
 }
-
+.cs-hero { background: linear-gradient(135deg,#eef2ff 0%,#e0e8ff 50%,#f0fff4 100%); }
+[data-theme="neon"] .cs-hero { background: linear-gradient(135deg, #0a0a10 0%, #0d0d1a 50%, #0a1010 100%) !important; }
+[data-theme="dark"] .cs-hero { background: linear-gradient(135deg, #141420 0%, #0f0f1a 100%) !important; }
+  
 /* ===== GATE DA STYLES ===== */
 :root {
   --da-teal-light: rgba(42,157,143,0.12);
@@ -1499,7 +1501,7 @@ body {
       </div>
 
       <!-- Hero -->
-      <div class="da-hero" style="background:linear-gradient(135deg,#eef2ff 0%,#e0e8ff 50%,#f0fff4 100%);">
+      <div class="da-hero cs-hero">
         <div style="display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:12px;">
           <div>
             <h2>GATE Computer Science — 2027</h2>
